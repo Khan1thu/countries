@@ -24,64 +24,67 @@ export const App = () => {
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <div className="App" id={theme}>
-              <Nav />
-              <div className="sf">
-                <div id={theme}>
-                  <input
-                    type="text"
-                    className="search"
-                    placeholder="Search for a country..."
-                    onChange={(event) => {
-                      setSearch(event.target.value);
-                    }}
-                  />
+      <div className="App" id={theme}>
+        <Nav />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <div>
+                <div className="sf">
+                  <div id={theme}>
+                    <input
+                      type="text"
+                      className="search"
+                      placeholder="Search for a country..."
+                      onChange={(event) => {
+                        setSearch(event.target.value);
+                      }}
+                    />
+                  </div>
+                  <Filter filterValueSelected={onFilterValueChanged} />
                 </div>
-                <Filter filterValueSelected={onFilterValueChanged} />
+                <div className="countries">
+                  {data
+                    .filter((c) => {
+                      if (filterTextValue === "Africa") {
+                        return c.region === "Africa";
+                      } else if (filterTextValue === "") {
+                        return c;
+                      } else if (filterTextValue === "America") {
+                        return c.region === "Americas";
+                      } else if (filterTextValue === "Asia") {
+                        return c.region === "Asia";
+                      } else if (filterTextValue === "Europe") {
+                        return c.region === "Europe";
+                      } else if (filterTextValue === "Oceania") {
+                        return c.region === "Oceania";
+                      }
+                    })
+                    .filter((c) => {
+                      if (search === "") {
+                        return c;
+                      } else if (
+                        c.name.toLowerCase().includes(search.toLowerCase())
+                      ) {
+                        return c;
+                      }
+                    })
+                    .map((c, i) => {
+                      return (
+                        <div key={i}>
+                          <Country country={c} id={i} />
+                        </div>
+                      );
+                    })}
+                </div>
               </div>
-              <div className="countries">
-                {data
-                  .filter((c) => {
-                    if (filterTextValue === "Africa") {
-                      return c.region === "Africa";
-                    } else if (filterTextValue === "") {
-                      return c;
-                    } else if (filterTextValue === "America") {
-                      return c.region === "Americas";
-                    } else if (filterTextValue === "Asia") {
-                      return c.region === "Asia";
-                    } else if (filterTextValue === "Europe") {
-                      return c.region === "Europe";
-                    } else if (filterTextValue === "Oceania") {
-                      return c.region === "Oceania";
-                    }
-                  })
-                  .filter((c) => {
-                    if (search === "") {
-                      return c;
-                    } else if (
-                      c.name.toLowerCase().includes(search.toLowerCase())
-                    ) {
-                      return c;
-                    }
-                  })
-                  .map((c) => {
-                    return (
-                      <Link to={`/country/${c.name}`}>
-                        <Country country={c} />
-                      </Link>
-                    );
-                  })}
-              </div>
-            </div>
-          }
-        />
-        <Route path="/country/:name" element={<CountryDetails />} />
-      </Routes>
+            }
+          />
+
+          <Route path="/country/:id" element={<CountryDetails />} />
+        </Routes>
+      </div>
     </ThemeContext.Provider>
   );
 };
