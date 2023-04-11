@@ -12,3 +12,10 @@
 .navLogo{
    cursor: pointer;
 }
+
+@media only screen and (max-width: 600px) {
+   .navTitle > h1{
+      font-size: 20px;
+   }
+
+}

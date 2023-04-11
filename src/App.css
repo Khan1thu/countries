@@ -8,13 +8,15 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  margin: 30px 0px 0px 0px;
+  margin: 30px 0px 30px 0px;
 }
 
 .countries
 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  place-items: center;
+  grid-row-gap: 30px;
 }
 
 .search
@@ -57,3 +59,33 @@
   background-color: #202d36;
   color: white;
 }
+
+@media only screen and (max-width: 1200px) {
+  
+.countries
+{
+  display: grid;
+  grid-template-columns: 1fr 1fr ;
+}
+}
+
+@media only screen and (max-width: 600px) {
+  
+  .countries
+  {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .sf{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .search{
+    margin: 0px 0px 10px 0px;
+    width: 250px;
+  }
+  
+  }

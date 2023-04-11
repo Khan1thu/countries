@@ -10,7 +10,7 @@ export const Country = (props) => {
     <div className="country">
       <img src={flag} />
       <div className="description">
-        <Link to={`/country/${number}`}>
+        <Link to={`/country/${number}`} className="link">
           <h1>
             {" "}
             <span>

@@ -37,7 +37,6 @@ button{
 
 .desc{
     width: 500px;
-    height: 400px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -51,4 +50,30 @@ button{
 
 .details-country > div > p{
     line-height: 2;
+}
+
+@media only screen and (max-width: 1074px) {
+    .details{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .flag{
+        width: 300px;
+    }
+
+    .desc{
+        width: 250px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .details-country{
+        display: flex;
+        flex-direction: column;
+    }
 }
